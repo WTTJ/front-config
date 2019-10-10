@@ -9,6 +9,12 @@ module.exports = {
   parser: 'babel-eslint',
   plugins: ['import', 'react-hooks', 'sort-destructure-keys'],
   rules: {
+    // Errors
+    'prettier/prettier': 'error',
+    'react-hooks/rules-of-hooks': 'error',
+    'no-unused-vars': ['error', { ignoreRestSiblings: true }],
+    'react/prop-types': ['error', { ignore: ['dataTestId'] }],
+    // Warnings
     'no-console': 'warn',
     'import/order': ['warn', { 'newlines-between': 'always' }],
     'sort-imports': [
@@ -20,14 +26,11 @@ module.exports = {
       }
     ],
     'sort-destructure-keys/sort-destructure-keys': ['warn', { caseSensitive: false }],
-    'prettier/prettier': 'warn',
-    'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'warn',
-    'react/prop-types': ['error', { ignore: ['dataTestId'] }],
     'react/sort-prop-types': ['warn', { ignoreCase: true, sortShapeProp: true }],
     'react/jsx-no-bind': ['warn', { allowArrowFunctions: true }],
-    'no-unused-vars': ['error', { ignoreRestSiblings: true }],
     'react/jsx-max-depth': ['warn', { max: 4 }],
+    // Off
     'react/require-default-props': 'off',
     'react/jsx-filename-extension': 'off',
     'react/jsx-indent': 'off',
