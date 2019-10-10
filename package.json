@@ -4,7 +4,7 @@
   "description": "Front-end code lint and formatting config",
   "main": "index.js",
   "files": [
-    "eslint.config.js",
+    ".eslintrc.js",
     "prettier.config.js",
     "stylelint.config.js"
   ],
