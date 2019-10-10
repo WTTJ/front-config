@@ -17,11 +17,11 @@
   },
   "keywords": [
     "eslint",
+    "eslintconfig",
     "prettier",
+    "prettierconfig",
     "babel",
-    "config",
-    "lint",
-    "formatting"
+    "babelconfig"
   ],
   "author": "",
   "license": "ISC",
@@ -30,8 +30,8 @@
   },
   "homepage": "https://github.com/WTTJ/wttj-config-front#readme",
   "peerDependencies": {
-    "babel-eslint": "=10.0.3",
-    "eslint": "=6.5.1",
-    "prettier": "=1.18.2"
+    "babel-eslint": "^10.0.3",
+    "eslint": "^6.5.1",
+    "prettier": "^1.18.2"
   }
 }
