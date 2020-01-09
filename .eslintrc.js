@@ -45,7 +45,7 @@ module.exports = {
   },
   settings: {
     react: {
-      version: '16.8.6'
+      version: 'detect'
     }
   }
 }
