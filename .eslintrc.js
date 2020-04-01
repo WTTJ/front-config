@@ -14,6 +14,7 @@ module.exports = {
     'react-hooks/rules-of-hooks': 'error',
     'no-unused-vars': ['error', { ignoreRestSiblings: true }],
     'react/prop-types': ['error', { ignore: ['dataTestId'] }],
+    quotes: [2, "single", { avoidEscape: true }],
     // Warnings
     'no-console': 'warn',
     'import/order': ['warn', { 'newlines-between': 'always' }],
