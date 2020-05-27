@@ -2,4 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.1.0](https://github.com/WTTJ/wttj-config-front/compare/v1.0.1...v1.1.0) (2020-05-27)
+
+
+### Features
+
+* change trailingComma to es5 ([a8cd00b](https://github.com/WTTJ/wttj-config-front/commit/a8cd00be05969376c18c7af532613c467c6d94bb))
+
+
+### Bug Fixes
+
+* prevent from using template litterals ([92d2791](https://github.com/WTTJ/wttj-config-front/commit/92d279150c032ab1c55c5e22986a9ddc59a1bf53))
+
 ### 1.0.1 (2019-10-10)
