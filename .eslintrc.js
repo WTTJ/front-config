@@ -3,7 +3,7 @@ module.exports = {
     es6: true,
     browser: true,
     node: true,
-    jest: true
+    jest: true,
   },
   extends: ['eslint:recommended', 'plugin:prettier/recommended', 'plugin:react/all'],
   parser: 'babel-eslint',
@@ -14,7 +14,7 @@ module.exports = {
     'react-hooks/rules-of-hooks': 'error',
     'no-unused-vars': ['error', { ignoreRestSiblings: true }],
     'react/prop-types': ['error', { ignore: ['dataTestId'] }],
-    quotes: [2, "single", { avoidEscape: true }],
+    quotes: [2, 'single', { avoidEscape: true }],
     // Warnings
     'no-console': 'warn',
     'import/order': ['warn', { 'newlines-between': 'always' }],
@@ -23,8 +23,8 @@ module.exports = {
       {
         ignoreCase: true,
         ignoreDeclarationSort: true,
-        memberSyntaxSortOrder: ['single', 'all', 'multiple', 'none']
-      }
+        memberSyntaxSortOrder: ['single', 'all', 'multiple', 'none'],
+      },
     ],
     'sort-destructure-keys/sort-destructure-keys': ['warn', { caseSensitive: false }],
     'react-hooks/exhaustive-deps': 'warn',
@@ -42,11 +42,13 @@ module.exports = {
     'react/forbid-prop-types': 'off',
     'react/jsx-no-literals': 'off',
     'react/forbid-component-props': 'off',
-    'react/jsx-props-no-spreading': 'off'
+    'react/jsx-props-no-spreading': 'off',
+    'react/no-multi-comp': 'off',
+    'react/no-danger': 'off',
   },
   settings: {
     react: {
-      version: 'detect'
-    }
-  }
+      version: 'detect',
+    },
+  },
 }
