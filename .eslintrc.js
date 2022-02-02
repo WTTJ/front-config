@@ -51,5 +51,8 @@ module.exports = {
     react: {
       version: 'detect',
     },
+    'import/resolve': {
+      extensions: ['.js', '.jsx', '.ts', '.tsx'],
+    }
   },
 }
