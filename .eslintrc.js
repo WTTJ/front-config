@@ -5,8 +5,11 @@ module.exports = {
     node: true,
     jest: true,
   },
+  parserOptions: {
+    requireConfigFile: false,
+  },
   extends: ['eslint:recommended', 'plugin:prettier/recommended', 'plugin:react/all'],
-  parser: 'babel-eslint',
+  parser: '@babel/eslint-parser',
   plugins: ['import', 'react-hooks', 'sort-destructure-keys'],
   rules: {
     // Errors
