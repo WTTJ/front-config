@@ -1,6 +1,5 @@
 # wttj-config-front
 
-
 ## Install
 
 ```
@@ -10,12 +9,14 @@ yarn add wttj-config-front
 ## Set up eslint rules
 
 ### If you want to use all rules
+
 ```
 // .eslintrc.js
 module.exports = require('wttj-config-front/.eslintrc')
 ```
 
 ### If you want to override some rules
+
 ```
 // .eslintrc.js
 
@@ -36,4 +37,18 @@ module.exports = merge({}, shared, local)
 ```
 // prettier.config.js
 module.exports = require('wttj-config-front/prettier.config.js')
+```
+
+## Setup Typescript
+
+```
+// tsconfig.json
+{
+  "extends": "wttj-config-front/tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": "src"
+  },
+  "include": ["src"]
+}
+
 ```
