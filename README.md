@@ -38,7 +38,7 @@ module.exports = {
 ```json
 // tsconfig.json
 {
-  "extends": "wttj-config-front/lib/tsconfig",
+  "extends": "wttj-config-front/lib/tsconfig/tsconfig.json",
   "compilerOptions": {
     "baseUrl": "src"
   },
