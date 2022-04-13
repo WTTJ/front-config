@@ -12,9 +12,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint lib --max-warnings 0",
-    "release:build": "standard-version && conventional-github-releaser --preset angular",
-    "release:publish": "git push --follow-tags origin master && npm publish",
-    "release": "yarn release:build && npm run release:publish"
+    "release": "git push --follow-tags origin master && npm publish"
   },
   "repository": {
     "type": "git",
@@ -55,9 +53,5 @@
     "stylelint-config-recommended": "^5.0.0",
     "stylelint-config-styled-components": "^0.1.1",
     "stylelint-processor-styled-components": "^1.10.0"
-  },
-  "devDependencies": {
-    "conventional-github-releaser": "3.1.5",
-    "standard-version": "9.3.2"
   }
 }
