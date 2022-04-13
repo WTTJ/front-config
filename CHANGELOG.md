@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.1.0](https://github.com/WTTJ/wttj-config-front/compare/v2.0.0...v2.1.0) (2022-04-13)
+
+
+### Features
+
+* add eslint-cypress config ([5e7c56e](https://github.com/WTTJ/wttj-config-front/commit/5e7c56e2b6c44b36654d513874bcf31424a3d57a))
+
+
+### Bug Fixes
+
+* tsconfig path must be complete ([652c940](https://github.com/WTTJ/wttj-config-front/commit/652c940c5d1ab783a27c905f3e85095c6a217f6b))
+
 ### [2.0.1](https://github.com/WTTJ/wttj-config-front/compare/v2.0.0...v2.0.1) (2022-04-05)
 
 ### [2.0.0](https://github.com/WTTJ/wttj-config-front/compare/v1.1.5...v2.0.0) (2022-04-05)

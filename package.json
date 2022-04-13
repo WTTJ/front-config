@@ -1,6 +1,6 @@
 {
   "name": "wttj-config-front",
-  "version": "2.0.1",
+  "version": "2.1.0",
   "description": "Front-end code lint and formatting config",
   "main": "lib/index.js",
   "files": [
@@ -57,7 +57,7 @@
     "stylelint-processor-styled-components": "^1.10.0"
   },
   "devDependencies": {
-    "conventional-github-releaser": "3.1.5",
-    "standard-version": "9.3.2"
+    "conventional-github-releaser": "^3.1.5",
+    "standard-version": "^9.3.2"
   }
 }
