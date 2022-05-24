@@ -12,7 +12,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint lib --max-warnings 0",
-    "release": "git push --follow-tags origin master && npm publish"
+    "release": "release-it"
   },
   "repository": {
     "type": "git",
@@ -53,5 +53,8 @@
     "stylelint-config-recommended": "^7.0.0",
     "stylelint-config-styled-components": "^0.1.1",
     "stylelint-processor-styled-components": "^1.10.0"
+  },
+  "devDependencies": {
+    "release-it": "^15.0.0"
   }
 }
