@@ -1,5 +1,5 @@
 {
-  "name": "wttj-config-front",
+  "name": "@wttj/config-front",
   "version": "2.4.0",
   "description": "Front-end code lint and formatting config",
   "main": "lib/index.js",
@@ -16,7 +16,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/WTTJ/wttj-config-front.git"
+    "url": "git+https://github.com/WTTJ/config-front.git"
   },
   "keywords": [
     "eslint",
@@ -31,9 +31,9 @@
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/WTTJ/wttj-config-front/issues"
+    "url": "https://github.com/WTTJ/config-front/issues"
   },
-  "homepage": "https://github.com/WTTJ/wttj-config-front#readme",
+  "homepage": "https://github.com/WTTJ/config-front#readme",
   "dependencies": {
     "@babel/eslint-parser": "^7.19.1",
     "@typescript-eslint/eslint-plugin": "^5.45.1",
