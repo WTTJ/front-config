@@ -36,7 +36,7 @@
   "homepage": "https://github.com/WTTJ/config-front#readme",
   "dependencies": {
     "@babel/eslint-parser": "^7.19.1",
-    "@typescript-eslint/eslint-plugin": "^5.45.1",
+    "@typescript-eslint/eslint-plugin": "^5.48.0",
     "@typescript-eslint/parser": "^5.45.1",
     "eslint": "^8.29.0",
     "eslint-config-prettier": "^8.5.0",
