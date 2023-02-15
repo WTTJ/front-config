@@ -18,6 +18,10 @@
     "type": "git",
     "url": "git+https://github.com/WTTJ/front-config.git"
   },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://npm.pkg.github.com"
+  },
   "keywords": [
     "eslint",
     "eslintconfig",
