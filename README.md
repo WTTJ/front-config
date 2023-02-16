@@ -1,9 +1,9 @@
-# @wttj/front-config
+# wttj-config
 
 ## Install
 
 ```
-yarn add --dev @wttj/front-config
+yarn add --dev wttj-config
 ```
 
 ## Eslint
@@ -11,11 +11,11 @@ yarn add --dev @wttj/front-config
 ```js
 // .eslintrc.js
 module.exports = {
-  extends: './node_modules/@wttj/front-config/lib/eslint',
+  extends: './node_modules/wttj-config/lib/eslint',
   // or if you want typescript configuration
-  // extends: './node_modules/@wttj/front-config/lib/eslint/eslintrc-typescript',
+  // extends: './node_modules/wttj-config/lib/eslint/eslintrc-typescript',
   // or if you want cypress configuration
-  // extends: './node_modules/@wttj/front-config/lib/eslint/eslintrc-cypress',
+  // extends: './node_modules/wttj-config/lib/eslint/eslintrc-cypress',
 }
 ```
 
@@ -23,7 +23,7 @@ module.exports = {
 
 ```js
 // prettier.config.js
-module.exports = require('@wttj/front-config/lib/prettier')
+module.exports = require('wttj-config/lib/prettier')
 ```
 
 ## Stylelint
@@ -31,7 +31,7 @@ module.exports = require('@wttj/front-config/lib/prettier')
 ```js
 // stylelint.config.js
 module.exports = {
-  extends: './node_modules/@wttj/front-config/lib/stylelint',
+  extends: './node_modules/wttj-config/lib/stylelint',
 }
 ```
 
@@ -40,7 +40,7 @@ module.exports = {
 ```json
 // tsconfig.json
 {
-  "extends": "@wttj/front-config/lib/tsconfig/tsconfig.json",
+  "extends": "wttj-config/lib/tsconfig/tsconfig.json",
   "compilerOptions": {
     "baseUrl": "src"
   },
