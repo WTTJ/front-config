@@ -1,10 +1,18 @@
 defaults: &defaults
   working_directory: ~/front-config
+  
+parameters:
+  nodejs_base_image:
+    type: string
+    default: 'cimg/node:16.18.1'
+  cache_version:
+    type: string
+    default: v20
 
 restore_repo: &restore_repo
   restore_cache:
     keys:
-      - v-20-source-{{ .Branch }}-{{ .Revision }}
+      - << pipeline.parameters.cache_version >>-source-{{ .Branch }}-{{ .Revision }}
 
 version: 2.1
 
@@ -15,28 +23,28 @@ jobs:
   checkout:
     <<: *defaults
     docker:
-      - image: cimg/node:16.13.2
+      - image: << pipeline.parameters.nodejs_base_image >>
     steps:
       - *restore_repo
       - checkout
       - restore_cache:
-          key: v-20-yarn-{{ checksum "yarn.lock" }}
+          key: << pipeline.parameters.cache_version >>-yarn-{{ checksum "yarn.lock" }}
       - run:
           name: install dependencies
           command: yarn
       - save_cache:
-          key: v-20-yarn-{{ checksum "yarn.lock" }}
+          key: << pipeline.parameters.cache_version >>-yarn-{{ checksum "yarn.lock" }}
           paths:
             - ~/.cache/yarn
       - save_cache:
-          key: v-20-source-{{ .Branch }}-{{ .Revision }}
+          key: << pipeline.parameters.cache_version >>-source-{{ .Branch }}-{{ .Revision }}
           paths:
             - ~/front-config
 
   vulnerabilities_yarn:
     <<: *defaults
     docker:
-      - image: cimg/node:16.16.0
+      - image: << pipeline.parameters.nodejs_base_image >>
     steps:
       - *restore_repo
       - run:
@@ -46,7 +54,7 @@ jobs:
   lint:
     <<: *defaults
     docker:
-      - image: cimg/node:16.13.2
+      - image: << pipeline.parameters.nodejs_base_image >>
         environment:
           NODE_ENV: test
     steps:
