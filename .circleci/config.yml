@@ -65,7 +65,7 @@ jobs:
 
 workflows:
   version: 2
-  test_and_build:
+  btd:
     jobs:
       - checkout
       - vulnerabilities_yarn:
