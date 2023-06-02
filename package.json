@@ -6,8 +6,9 @@
   "files": [
     "lib/eslint/**",
     "lib/prettier/**",
-    "lib/tsconfig/**",
-    "lib/stylelint/**"
+    "lib/scripts/**",
+    "lib/stylelint/**",
+    "lib/tsconfig/**"
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
