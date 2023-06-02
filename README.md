@@ -48,6 +48,10 @@ module.exports = {
 }
 ```
 
+## Translations
+
+We've added a script to run as a lint task that ensures that the keys in translation files are sorted alphabetically.
+
 ## Scripts
 
 ```json
@@ -55,10 +59,11 @@ module.exports = {
 {
   "scripts": {
     // ...
-    "lint": "yarn lint:js && yarn lint:css && yarn lint:ts",
+    "lint": "yarn lint:js && yarn lint:css && yarn lint:ts && yarn lint:translations",
     "lint:js": "eslint src --max-warnings 0",
     "lint:css": "stylelint 'src/**/styles.ts' --allow-empty-input",
-    "lint:ts": "tsc --noEmit"
+    "lint:ts": "tsc --noEmit",
+    "lint:translations": "node -r esm scripts/sort-translations.js",
   }
 },
 ```
