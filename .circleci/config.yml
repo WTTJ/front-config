@@ -1,6 +1,6 @@
 defaults: &defaults
   working_directory: ~/front-config
-  
+
 parameters:
   nodejs_base_image:
     type: string
@@ -63,8 +63,24 @@ jobs:
           name: linter
           command: yarn lint
 
+  release:
+    <<: *defaults
+    docker:
+      - image: << pipeline.parameters.nodejs_base_image >>
+        environment:
+          NODE_ENV: production
+    steps:
+      - *restore_repo
+      - attach_workspace:
+          at: ~/front-config
+      - run:
+          name: 'auth to npm registry'
+          command: echo "//npm.pkg.github.com/:_authToken=$GITHUB_TOKEN_WRITE_PACKAGES" > ~/.npmrc
+      - run:
+          name: publish
+          command: npm publish
+
 workflows:
-  version: 2
   btd:
     jobs:
       - checkout
@@ -74,3 +90,14 @@ workflows:
       - lint:
           requires:
             - vulnerabilities_yarn
+      - release:
+          context:
+            - github
+          requires:
+            - vulnerabilities_yarn
+            - lint
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /.*/
