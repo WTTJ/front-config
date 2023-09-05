@@ -83,13 +83,28 @@ jobs:
 workflows:
   btd:
     jobs:
-      - checkout
+      - checkout:
+          filters:
+            branches:
+              only: /.*/
+            tags:
+              only: /.*/
       - vulnerabilities_yarn:
           requires:
             - checkout
+          filters:
+            branches:
+              only: /.*/
+            tags:
+              only: /.*/
       - lint:
           requires:
             - vulnerabilities_yarn
+          filters:
+            branches:
+              only: /.*/
+            tags:
+              only: /.*/
       - release:
           context:
             - github
