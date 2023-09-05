@@ -105,6 +105,8 @@ workflows:
             tags:
               only: /.*/
       - release:
+          context:
+            - wttj-config
           requires:
             - vulnerabilities_yarn
             - lint
