@@ -74,11 +74,10 @@ jobs:
       - attach_workspace:
           at: ~/front-config
       - run:
-          name: 'auth to npm registry'
-          command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
-      - run:
-          name: publish
-          command: npm publish
+          name: Publish to NPM
+          command: |
+            npm set //registry.npmjs.org/:_authToken=$NPM_TOKEN
+            npm publish
 
 workflows:
   btd:
@@ -106,8 +105,6 @@ workflows:
             tags:
               only: /.*/
       - release:
-          context:
-            - welcome-ui
           requires:
             - vulnerabilities_yarn
             - lint

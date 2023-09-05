@@ -15,7 +15,7 @@
     "check:audit": "/bin/bash -c 'yarn audit --level critical; [[ $? -ge 16 ]] && exit 1 || exit 0'",
     "lint": "eslint lib --max-warnings 0",
     "prepare": "node_modules/.bin/husky install",
-    "release": "release-it --no-npm",
+    "release": "release-it",
     "test": "jest"
   },
   "repository": {
