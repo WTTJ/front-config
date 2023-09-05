@@ -83,7 +83,7 @@ jobs:
 workflows:
   btd:
     jobs:
-      - checkout
+      - checkout:
           filters:
             branches:
               only: /.*/
