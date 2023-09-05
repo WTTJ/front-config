@@ -1,4 +1,14 @@
-# wttj-config
+# wttj-config <!-- omit in toc -->
+
+- [Install](#install)
+- [Eslint](#eslint)
+- [Prettier](#prettier)
+- [Stylelint](#stylelint)
+- [Tsconfig](#tsconfig)
+- [Translations](#translations)
+- [Scripts](#scripts)
+- [VSCode](#vscode)
+- [How to release](#how-to-release)
 
 ## Install
 
@@ -82,3 +92,11 @@ Install [eslint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vs
   "editor.defaultFormatter": "esbenp.prettier-vscode"
 }
 ```
+
+## How to release
+
+```
+yarn release
+```
+
+Then release-it create a new github tag who activate circle ci release action.
