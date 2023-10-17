@@ -44,7 +44,6 @@
   "homepage": "https://github.com/WTTJ/front-config#readme",
   "dependencies": {
     "@babel/eslint-parser": "^7.19.1",
-    "@stylelint/postcss-css-in-js": "^0.38.0",
     "@typescript-eslint/eslint-plugin": "^5.49.0",
     "@typescript-eslint/parser": "^5.49.0",
     "eslint": "^8.29.0",
@@ -57,12 +56,11 @@
     "eslint-plugin-react": "^7.32.1",
     "eslint-plugin-react-hooks": "^4.3.0",
     "eslint-plugin-sort-destructure-keys": "^1.3.3",
+    "postcss-styled-syntax": "^0.5.0",
     "postcss-syntax": "^0.36.2",
     "prettier": "^2.8.3",
-    "stylelint": "^14.16.1",
-    "stylelint-config-recommended": "^9.0.0",
-    "stylelint-config-styled-components": "^0.1.1",
-    "stylelint-processor-styled-components": "^1.10.0",
+    "stylelint": "^15.11.0",
+    "stylelint-config-recommended": "^13.0.0",
     "yargs": "^17.7.2"
   },
   "devDependencies": {
