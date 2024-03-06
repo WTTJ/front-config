@@ -44,6 +44,8 @@
   "homepage": "https://github.com/WTTJ/front-config#readme",
   "dependencies": {
     "@babel/eslint-parser": "^7.23.10",
+    "@babel/plugin-syntax-flow": "^7.23.3",
+    "@babel/plugin-transform-react-jsx": "^7.23.4",
     "@typescript-eslint/eslint-plugin": "^7.1.1",
     "@typescript-eslint/parser": "^7.1.1",
     "eslint": "^8.57.0",
@@ -56,6 +58,7 @@
     "eslint-plugin-react": "^7.34.0",
     "eslint-plugin-react-hooks": "^4.3.0",
     "eslint-plugin-sort-destructure-keys": "^1.5.0",
+    "postcss": "^8.4.35",
     "postcss-styled-syntax": "^0.6.4",
     "postcss-syntax": "^0.36.2",
     "prettier": "^3.2.5",
@@ -69,6 +72,7 @@
     "babel-jest": "^29.7.0",
     "husky": "^9.0.11",
     "jest": "^29.7.0",
-    "release-it": "^17.1.1"
+    "release-it": "^17.1.1",
+    "typescript": "^5.3.3"
   }
 }
