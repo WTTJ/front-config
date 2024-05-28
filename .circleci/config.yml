@@ -123,8 +123,7 @@ workflows:
           context:
             - wttj-config
           requires:
-            - vulnerabilities_yarn
-            - lint
+            - test
           filters:
             branches:
               ignore: /.*/
