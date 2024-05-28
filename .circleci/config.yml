@@ -41,27 +41,39 @@ jobs:
           paths:
             - ~/front-config
 
-  vulnerabilities_yarn:
+  test:
     <<: *defaults
     docker:
-      - image: << pipeline.parameters.nodejs_base_image >>
-    steps:
-      - *restore_repo
-      - run:
-          name: Critical vulnerabilities test (yarn audit)
-          command: yarn check:audit
-
-  lint:
-    <<: *defaults
-    docker:
-      - image: << pipeline.parameters.nodejs_base_image >>
+      - image: cimg/node:20.11.0
         environment:
           NODE_ENV: test
     steps:
       - *restore_repo
+      - run: yarn lint
+      - run: yarn check:audit
+      - run: yarn test:coverage
+      - run: yarn test:coverage:group
+      - persist_to_workspace:
+          root: ~/front-config
+          paths:
+            - coverage
+
+  coverage:
+    docker:
+      - image: 924484830305.dkr.ecr.eu-west-1.amazonaws.com/coverage:main-latest
+        environment:
+          AWS_S3_BUCKET: welcome-releases
+          AWS_S3_FOLDER: data/coverage
+          # Even though we use `vitest` for the tests, we need to specify `jest` because we group the thresholds
+          COVERAGE_PARSER: jest
+          KEEP_UNTOUCHED_FILES: 'true'
+          COVERAGE_VARIATION_THRESHOLD: 0.05
+    steps:
+      - attach_workspace:
+          at: /tmp
       - run:
-          name: linter
-          command: yarn lint
+          name: Upload coverage and comment PR
+          command: /app/bin/coverage eval 'Coverage.run("/tmp/coverage/coverage-grouped.json")'
 
   release:
     <<: *defaults
@@ -88,7 +100,7 @@ workflows:
               only: /.*/
             tags:
               only: /.*/
-      - vulnerabilities_yarn:
+      - test:
           requires:
             - checkout
           filters:
@@ -96,9 +108,12 @@ workflows:
               only: /.*/
             tags:
               only: /.*/
-      - lint:
+      - coverage:
+          context:
+            - aws
+            - coverage
           requires:
-            - vulnerabilities_yarn
+            - test
           filters:
             branches:
               only: /.*/
