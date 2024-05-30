@@ -18,7 +18,7 @@
     "release": "release-it",
     "test": "vitest",
     "test:coverage": "vitest run --coverage",
-    "test:coverage:group": "node scripts/group-coverage.js"
+    "test:coverage:group": "node lib/scripts/group-coverage.js"
   },
   "repository": {
     "type": "git",
