@@ -15,7 +15,7 @@ if [ $res -gt 0 ]; then
     yarn run formatjs extract $(git --no-pager diff --staged --name-only "$EXTRACT_FROM_PATTERN" ':(exclude)**/*.d.ts' | xargs echo -n | xargs -0) --out-file $LOCALES_DIR_PATH/temp.json --flatten --extract-source-location
   fi
 
-  if node ./i18n-check.mjs; then
+  if node node_modules/wttj-config/lib/i18n/check.mjs; then
     rm -f $LOCALES_DIR_PATH/temp.json
 
     # no need to translate anything either because temp file object is empty
