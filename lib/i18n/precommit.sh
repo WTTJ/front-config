@@ -1,4 +1,4 @@
-export $(cat i18n-env | xargs)
+export $(cat .i18n-env | xargs)
 
 # res returns the number of different staged files that might include translations
 res=$(git --no-pager diff --staged --name-only "$EXTRACT_FROM_PATTERN" | wc -l)
