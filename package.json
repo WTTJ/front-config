@@ -4,6 +4,7 @@
   "description": "Front-end code lint and formatting config",
   "main": "lib/index.js",
   "files": [
+    "lib/i18n/**",
     "lib/eslint/**",
     "lib/prettier/**",
     "lib/scripts/**",
