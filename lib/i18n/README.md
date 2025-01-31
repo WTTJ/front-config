@@ -45,16 +45,23 @@ To help product writers have more context on the translation they are working on
 
 This file is then used by lokalise to provide context to the translators.
 
+## Update last source locales to lokalise
+
+CircleCI is responsible for updating the last source locales to lokalise. It uses the `lokalise2` cli command to do so.
+
+It will run on every push on the `main` branch so that our product writers always have the last source locales to work on.
+
+Actually, it is not possible to work on branches other than `main`, but it could be possible if we need it by upgrading our plan on lokalise and change some CircleCI configuration accordingly.
+
+Add the following code to your circleci configuration file:
+
+```yaml
+TODO add circleci configuration here
+```
+
 ## Installation
 
 ```bash
-#for mac users
-brew tap lokalise/cli-2
-brew install lokalise2
-
-#for linux users
-curl -sfL https://raw.githubusercontent.com/lokalise/lokalise-cli-2-go/master/install.sh | sh
-
 yarn add react-intl
 yarn add -D @wttj-config @formatjs/cli eslint-plugin-formatjs
 ```
@@ -67,24 +74,30 @@ First, add the following scripts in the `package.json` of your app:
 
 ```json
     "config": {
-        "i18n": {
-          "app_name": "your-app-name", // the name of your app
-          "locales_dir_path": "src/locales", // the folder where you want your locales to be generated in
-          "extract_from_pattern": "src/**/*.ts*", // the global pattern where you want the scripts to look for translations
-          "default_language_filename": "en-US", // the default language filename
-          "path_to_ignore": "src/admin"" // optional path to be ignored by the scripts
-        }
+      "i18n": {
+        "app_name": "your-app-name",
+        "locales_dir_path": "src/locales",
+        "extract_from_pattern": "src/**/*.ts*",
+        "default_language_filename": "en-US",
+        "path_to_ignore": ""
+      }
     }
 ```
+
+- `app_name` is the name of your app_name
+- `locales_dir_path` is the folder where you want your locales to be generated in
+- `extract_from_pattern` is the global pattern where you want the scripts to look for translations
+- `default_language_filename` is the default language filename
+- `path_to_ignore` (OPTIONAL) is a path where you don't want the scripts to look for translations ( if it is inside the `extract_from_pattern` global pattern )
 
 2. under the `scripts` key:
 
 ```json
     "scripts": {
-        "i18n:extract": "formatjs extract \"$npm_package_config_i18n_extract_from_pattern\" --ignore=\"{**/*.d.ts,$npm_package_config_i18n_path_to_ignore}\" --out-file $npm_package_config_i18n_locales_dir_path/temp.json --flatten --format simple",
-        "i18n:contextualize": "node node_modules/wttj-config/lib/i18n/contextualize.mjs",
-        "i18n:sync": "node node_modules/wttj-config/lib/i18n/sync.mjs",
-        "i18n:translate": "yarn --silent i18n:extract && yarn --silent i18n:sync && yarn --silent i18n:contextualize",
+      "i18n:extract": "formatjs extract \"$npm_package_config_i18n_extract_from_pattern\" --ignore=\"{**/*.d.ts,$npm_package_config_i18n_path_to_ignore}\" --out-file $npm_package_config_i18n_locales_dir_path/temp.json --flatten --format simple",
+      "i18n:contextualize": "node node_modules/wttj-config/lib/i18n/contextualize.mjs",
+      "i18n:sync": "node node_modules/wttj-config/lib/i18n/sync.mjs",
+      "i18n:translate": "yarn --silent i18n:extract && yarn --silent i18n:sync && yarn --silent i18n:contextualize",
     }
 ```
 
