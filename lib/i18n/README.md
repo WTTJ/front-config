@@ -61,26 +61,31 @@ yarn add -D @wttj-config @formatjs/cli eslint-plugin-formatjs
 
 ## Usage
 
-Create a `.i18n-env` file at the root of your project using `./.secrets` (next to this README, to be opened with `sops`) with the following content:
+First, add the following scripts in the `package.json` of your app:
 
-```
-APP_NAME=your-app-name // the name of your app
-LOKALISE_TOKEN=should-be-found-in-dot-secrets-file // your lokalise token
-LOKALISE_PROJECT_ID=your-lokalise-project-id // your lokalise project id (ask for it to your product writer)
-LOCALES_DIR_PATH=src/locales // the folder where you want your locales to be generated in
-DEFAULT_LANGUAGE_FILENAME=en-US // the default language filename
-EXTRACT_FROM_PATTERN=src/**/*.ts* // the global pattern where you want the scripts to look for translations
-PATH_TO_IGNORE=src/admin // optional path to be ignored by the scripts
-```
-
-Then add the following scripts to your `package.json` under the `scripts` key:
+1. under a `config` key:
 
 ```json
-"i18n:update:lokalise": "export $(cat .i18n-env | xargs) && lokalise2 --token $LOKALISE_TOKEN --project-id $LOKALISE_PROJECT_ID file upload --file $LOCALES_DIR_PATH/contextualized-en-US.json --lang-iso $DEFAULT_LANGUAGE_FILENAME",
-"i18n:extract": "export $(cat .i18n-env | xargs) && formatjs extract \"$EXTRACT_FROM_PATTERN\" --ignore=\"{**/*.d.ts,$PATH_TO_IGNORE}\" --out-file $LOCALES_DIR_PATH/temp.json --flatten --format simple",
-"i18n:contextualize": "export $(cat .i18n-env | xargs) && node node_modules/wttj-config/lib/i18n/contextualize.mjs",
-"i18n:sync": "export $(cat .i18n-env | xargs) && node node_modules/wttj-config/lib/i18n/sync.mjs",
-"i18n:translate": "export $(cat .i18n-env | xargs) && yarn i18n:extract && yarn i18n:sync && yarn i18n:contextualize",
+    "config": {
+        "i18n": {
+          "app_name": "your-app-name", // the name of your app
+          "locales_dir_path": "src/locales", // the folder where you want your locales to be generated in
+          "extract_from_pattern": "src/**/*.ts*", // the global pattern where you want the scripts to look for translations
+          "default_language_filename": "en-US", // the default language filename
+          "path_to_ignore": "src/admin"" // optional path to be ignored by the scripts
+        }
+    }
+```
+
+2. under the `scripts` key:
+
+```json
+    "scripts": {
+        "i18n:extract": "formatjs extract \"$npm_package_config_i18n_extract_from_pattern\" --ignore=\"{**/*.d.ts,$npm_package_config_i18n_path_to_ignore}\" --out-file $npm_package_config_i18n_locales_dir_path/temp.json --flatten --format simple",
+        "i18n:contextualize": "node node_modules/wttj-config/lib/i18n/contextualize.mjs",
+        "i18n:sync": "node node_modules/wttj-config/lib/i18n/sync.mjs",
+        "i18n:translate": "yarn --silent i18n:extract && yarn --silent i18n:sync && yarn --silent i18n:contextualize",
+    }
 ```
 
 Update your `.eslintrc.cjs` configuration to include the following, under the `rules` key:
@@ -97,7 +102,9 @@ Update your `.eslintrc.cjs` configuration to include the following, under the `r
 If you use husky, add the following line in a precommit hook `./husky/precommit` to automatize the translation process:
 
 ```shell
-./node_modules/wttj-config/lib/i18n/precommit.sh
+node /node_modules/wttj-config/lib/i18n/precommit.mjs
 ```
+
+If you don't use husky, you will be responsible for running the `i18n:translate` script before pushing your code (not recommended as many automation are made in the precommit hook).
 
 This should be it, enjoy and don't hesitate to reach out if you have any questions / issues!
