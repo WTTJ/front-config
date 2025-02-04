@@ -98,7 +98,7 @@ Please note that we filter the branches to only `main` to avoid updating the sou
 
 ```bash
 yarn add react-intl
-yarn add -D @wttj-config @formatjs/cli eslint-plugin-formatjs
+yarn add -D wttj-config @formatjs/cli eslint-plugin-formatjs
 ```
 
 ## Usage
