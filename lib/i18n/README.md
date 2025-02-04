@@ -53,11 +53,46 @@ It will run on every push on the `main` branch so that our product writers alway
 
 Actually, it is not possible to work on branches other than `main`, but it could be possible if we need it by upgrading our plan on lokalise and change some CircleCI configuration accordingly.
 
-Add the following code to your circleci configuration file:
+Add the following code to your circleci configuration file and adapt it to your circleci configuration:
 
 ```yaml
-TODO add circleci configuration here
+    jobs:
+      update_translations:
+        <<: *defaults
+        machine:
+          image: default
+        steps:
+          - *restore_repo
+          - *restore_node_modules
+          - run:
+              name: Download and install lokalise-cli v2
+              command: |
+                curl -sfL https://raw.githubusercontent.com/lokalise/lokalise-cli-2-go/master/install.sh | sh
+                # Make it executable
+                chmod +x ./bin/lokalise2
+                sudo mv ./bin/lokalise2 /usr/local/bin/
+                # Verify installation
+                lokalise2 --version
+          - run:
+              name: Update source locales to lokalise via lokalise2
+              command: |
+                lokalise2 --token $LOKALISE_TOKEN --project-id REPLACE_ME_WITH_PROJECT_ID_FROM_LOKALISE file upload --file REPLACE_ME_WITH_LOCALES_DIR_PATH_VALUE/contextualized-en-US.json --lang-iso en-US
+    […]
+
+    workflows:
+      test_and_build:
+        jobs:
+          - update_translations:
+              context: i18n
+              requires:
+                - checkout
+              filters:
+                branches:
+                  only: main
+
 ```
+
+Please note that we filter the branches to only `main` to avoid updating the source locales on lokalise with every push on every branch.
 
 ## Installation
 
