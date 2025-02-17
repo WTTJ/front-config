@@ -136,8 +136,15 @@ First, add the following scripts in the `package.json` of your app:
     }
 ```
 
-Update your `.eslintrc.cjs` configuration to include the following, under the `rules` key:
+Update your `.eslintrc.cjs` configuration to include the following: 
 
+- `formatjs` in your plugins: 
+```javascript
+  plugins: ['testing-library', 'formatjs', '@vitest'],
+```
+
+
+- under the `rules` key:
 ```javascript
     'formatjs/enforce-id': [
       'error',
@@ -147,7 +154,7 @@ Update your `.eslintrc.cjs` configuration to include the following, under the `r
     ],
 ```
 
-If you use husky, add the following line in a precommit hook `./husky/precommit` to automatize the translation process:
+If you use husky, add the following line in a precommit hook `./husky/pre-commit` to automatize the translation process:
 
 ```shell
 node /node_modules/wttj-config/lib/i18n/precommit.mjs
