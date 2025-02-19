@@ -76,7 +76,7 @@ Add the following code to your circleci configuration file and adapt it to your 
           - run:
               name: Update source locales to lokalise via lokalise2
               command: |
-                lokalise2 --token $LOKALISE_TOKEN --project-id REPLACE_ME_WITH_PROJECT_ID_FROM_LOKALISE file upload --file REPLACE_ME_WITH_LOCALES_DIR_PATH_VALUE/contextualized-en-US.json --lang-iso en-US
+                lokalise2 --token $LOKALISE_TOKEN --project-id $LOKALISE_PROJECT_ID file upload --file REPLACE_ME_WITH_LOCALES_DIR_PATH_VALUE/contextualized-en-US.json --lang-iso en-US
     […]
 
     workflows:
@@ -123,7 +123,7 @@ First, add the following scripts in the `package.json` of your app:
 - `locales_dir_path` is the folder where you want your locales to be generated in
 - `extract_from_pattern` is the global pattern where you want the scripts to look for translations
 - `default_language_filename` is the default language filename
-- `path_to_ignore` (OPTIONAL) is a path where you don't want the scripts to look for translations ( if it is inside the `extract_from_pattern` global pattern )
+- `path_to_ignore` is a path where you don't want the scripts to look for translations ( if it is inside the `extract_from_pattern` global pattern ). Set to '' if you don't want to ignore any path.
 
 2. under the `scripts` key:
 
@@ -136,15 +136,16 @@ First, add the following scripts in the `package.json` of your app:
     }
 ```
 
-Update your `.eslintrc.cjs` configuration to include the following: 
+Update your `.eslintrc.cjs` configuration to include the following:
 
-- `formatjs` in your plugins: 
+- `formatjs` in your plugins:
+
 ```javascript
   plugins: ['testing-library', 'formatjs', '@vitest'],
 ```
 
-
 - under the `rules` key:
+
 ```javascript
     'formatjs/enforce-id': [
       'error',
@@ -157,7 +158,7 @@ Update your `.eslintrc.cjs` configuration to include the following:
 If you use husky, add the following line in a precommit hook `./husky/pre-commit` to automatize the translation process:
 
 ```shell
-node /node_modules/wttj-config/lib/i18n/precommit.mjs
+node ./node_modules/wttj-config/lib/i18n/precommit.mjs
 ```
 
 If you don't use husky, you will be responsible for running the `i18n:translate` script before pushing your code (not recommended as many automation are made in the precommit hook).
