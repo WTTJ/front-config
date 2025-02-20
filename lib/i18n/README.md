@@ -76,7 +76,7 @@ Add the following code to your circleci configuration file and adapt it to your 
           - run:
               name: Update source locales to lokalise via lokalise2
               command: |
-                lokalise2 --token $LOKALISE_TOKEN --project-id $LOKALISE_PROJECT_ID file upload --file REPLACE_ME_WITH_LOCALES_DIR_PATH_VALUE/contextualized-en-US.json --lang-iso en-US
+                lokalise2 --token $LOKALISE_TOKEN --project-id $LOKALISE_PROJECT_ID file upload --file REPLACE_ME_WITH_LOCALES_DIR_PATH_VALUE/contextualized-en-US.json --lang-iso en-US --cleanup-mode
     […]
 
     workflows:
