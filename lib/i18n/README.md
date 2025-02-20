@@ -76,7 +76,7 @@ Add the following code to your circleci configuration file and adapt it to your 
           - run:
               name: Update source locales to lokalise via lokalise2
               command: |
-                lokalise2 --token $LOKALISE_TOKEN --project-id $LOKALISE_PROJECT_ID file upload --file REPLACE_ME_WITH_LOCALES_DIR_PATH_VALUE/contextualized-en-US.json --lang-iso en-US
+                lokalise2 --token $LOKALISE_TOKEN --project-id $LOKALISE_PROJECT_ID file upload --file REPLACE_ME_WITH_LOCALES_DIR_PATH_VALUE/contextualized-en-US.json --lang-iso en-US --cleanup-mode
     […]
 
     workflows:
@@ -132,7 +132,7 @@ First, add the following scripts in the `package.json` of your app:
       "i18n:extract": "formatjs extract \"$npm_package_config_i18n_extract_from_pattern\" --ignore=\"{**/*.d.ts,$npm_package_config_i18n_path_to_ignore}\" --out-file $npm_package_config_i18n_locales_dir_path/temp.json --flatten --format simple",
       "i18n:contextualize": "node node_modules/wttj-config/lib/i18n/contextualize.mjs",
       "i18n:sync": "node node_modules/wttj-config/lib/i18n/sync.mjs",
-      "i18n:translate": "yarn --silent i18n:extract && yarn --silent i18n:sync && yarn --silent i18n:contextualize",
+      "i18n:translate": "yarn --silent i18n:extract && yarn --silent i18n:sync && yarn --silent i18n:contextualize",// remove --silent if you are using yarn v4
     }
 ```
 
