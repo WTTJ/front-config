@@ -1,6 +1,6 @@
 {
   "name": "wttj-config",
-  "version": "3.1.1",
+  "version": "3.1.2",
   "description": "Front-end code lint and formatting config",
   "main": "lib/index.js",
   "files": [
