@@ -12,8 +12,8 @@
     "lib/tsconfig/**"
   ],
   "scripts": {
-    "audit:fix": "npm_config_yes=true npx yarn-audit-fix",
-    "check:audit": "/bin/bash -c 'yarn audit --level critical; [[ $? -ge 16 ]] && exit 1 || exit 0'",
+    "check:audit:fix": "npm_config_yes=true npx yarn-audit-fix",
+    "check:audit": "/bin/bash -c 'yarn audit --level low; [[ $? -ge 2 ]] && exit 1 || exit 0'",
     "lint": "eslint lib --max-warnings 0",
     "prepare": "husky",
     "release": "release-it",
