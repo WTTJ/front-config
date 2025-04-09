@@ -63,7 +63,7 @@ jobs:
           name: linter
           command: yarn lint
 
-  test: 
+  test:
     <<: *defaults
     docker:
       - image: << pipeline.parameters.nodejs_base_image >>
@@ -73,7 +73,7 @@ jobs:
       - *restore_repo
       - run:
           name: test
-          command: yarn test
+          command: yarn test --watch=false
 
   release:
     <<: *defaults
