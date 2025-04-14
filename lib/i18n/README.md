@@ -65,6 +65,10 @@ Add the following code to your circleci configuration file and adapt it to your 
           - *restore_repo
           - *restore_node_modules
           - run:
+              name: Check i18n translations between code and generated source locales (en-US by default)
+              command: |
+                node path_to_your_project/node_modules/wttj-config/lib/i18n/check.mjs
+          - run:
               name: Download and install lokalise-cli v2
               command: |
                 curl -sfL https://raw.githubusercontent.com/lokalise/lokalise-cli-2-go/master/install.sh | sh
@@ -76,7 +80,7 @@ Add the following code to your circleci configuration file and adapt it to your 
           - run:
               name: Update source locales to lokalise via lokalise2
               command: |
-                lokalise2 --token $LOKALISE_TOKEN --project-id $LOKALISE_PROJECT_ID file upload --file REPLACE_ME_WITH_LOCALES_DIR_PATH_VALUE/contextualized-en-US.json --lang-iso en-US --cleanup-mode
+                lokalise2 --token $LOKALISE_TOKEN --project-id $LOKALISE_PROJECT_ID file upload --file REPLACE_ME_WITH_LOCALES_DIR_PATH_VALUE/contextualized-en-US.json --lang-iso en-US --cleanup-mode --convert-placeholders=false --replace-modified
     […]
 
     workflows:

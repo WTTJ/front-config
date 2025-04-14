@@ -1,1 +1,1 @@
-yarn lint && yarn test && yarn check:audit
+yarn lint && yarn test --watch=false && yarn check:audit

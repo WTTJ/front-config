@@ -4,7 +4,7 @@ defaults: &defaults
 parameters:
   nodejs_base_image:
     type: string
-    default: 'cimg/node:18.18.0'
+    default: 'cimg/node:20.11.0'
   cache_version:
     type: string
     default: v20
@@ -63,6 +63,18 @@ jobs:
           name: linter
           command: yarn lint
 
+  test:
+    <<: *defaults
+    docker:
+      - image: << pipeline.parameters.nodejs_base_image >>
+        environment:
+          NODE_ENV: test
+    steps:
+      - *restore_repo
+      - run:
+          name: test
+          command: yarn test --watch=false
+
   release:
     <<: *defaults
     docker:
@@ -98,7 +110,15 @@ workflows:
               only: /.*/
       - lint:
           requires:
-            - vulnerabilities_yarn
+            - checkout
+          filters:
+            branches:
+              only: /.*/
+            tags:
+              only: /.*/
+      - test:
+          requires:
+            - checkout
           filters:
             branches:
               only: /.*/
@@ -108,6 +128,7 @@ workflows:
           context:
             - wttj-config
           requires:
+            - test
             - vulnerabilities_yarn
             - lint
           filters:
