@@ -67,7 +67,7 @@ Add the following code to your circleci configuration file and adapt it to your 
           - run:
               name: Check i18n translations between code and generated source locales (en-US by default)
               command: |
-                node node_modules/wttj-config/lib/i18n/check.mjs
+                node path_to_your_project/node_modules/wttj-config/lib/i18n/check.mjs
           - run:
               name: Download and install lokalise-cli v2
               command: |
