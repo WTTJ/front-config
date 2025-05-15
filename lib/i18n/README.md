@@ -57,7 +57,7 @@ Add the following code to your circleci configuration file and adapt it to your 
 
 ```yaml
     jobs:
-      update_translations:
+      check_translations:
         <<: *defaults
         machine:
           image: default
@@ -67,7 +67,15 @@ Add the following code to your circleci configuration file and adapt it to your 
           - run:
               name: Check i18n translations between code and generated source locales (en-US by default)
               command: |
-                node path_to_your_project/node_modules/wttj-config/lib/i18n/check.mjs
+                node ~/CHANGE_ME_FOR_YOUR_APP_NAME/node_modules/wttj-config/lib/i18n/check.mjs
+
+      update_translations:
+        <<: *defaults
+        machine:
+          image: default
+        steps:
+          - *restore_repo
+          - *restore_node_modules
           - run:
               name: Download and install lokalise-cli v2
               command: |
@@ -86,10 +94,14 @@ Add the following code to your circleci configuration file and adapt it to your 
     workflows:
       test_and_build:
         jobs:
-          - update_translations:
+          - check_translations:
               context: i18n
               requires:
                 - checkout
+          - update_translations:
+              context: i18n
+              requires:
+                - check_translations
               filters:
                 branches:
                   only: main
