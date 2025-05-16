@@ -1,3 +1,7 @@
+# 🚨🚨🚨 Legacy <!-- omit in toc -->
+
+This library is no longer maintained, please use [@wttj/front](https://github.com/WTTJ/front) instead.
+
 # wttj-config <!-- omit in toc -->
 
 - [Install](#install)
